@@ -1,0 +1,103 @@
+// Run: node bin/install-content.js
+//
+// Installs the content-creation global layer to ~/.claude/content-creation/.
+// Creator-owned files (guidance.md, examples-viral-*.md) are never overwritten on re-run.
+// System files (mental-models.md, virality-patterns.md) are always re-copied on re-run.
+
+'use strict';
+
+const fs   = require('fs');
+const path = require('path');
+const os   = require('os');
+
+// ---------------------------------------------------------------------------
+// Paths
+// ---------------------------------------------------------------------------
+
+const SRC    = path.join(__dirname, '..', 'content-creation');
+const TARGET = path.join(os.homedir(), '.claude', 'content-creation');
+
+// ---------------------------------------------------------------------------
+// File lists
+// ---------------------------------------------------------------------------
+
+// Creator-owned: skip on re-run to protect edits.
+const CREATOR_FILES = [
+  'guidance.md',
+  'examples-viral-substack.md',
+  'examples-viral-linkedin.md',
+];
+
+// System files: always overwrite on re-run (agent knowledge base, not user content).
+const SYSTEM_FILES = [
+  'mental-models.md',
+  'virality-patterns.md',
+];
+
+// Subdirectories to create inside TARGET (in addition to the root).
+const SUBDIRS = ['bin', 'workflows', 'templates'];
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function ensureDirs() {
+  fs.mkdirSync(TARGET, { recursive: true });
+  for (const dir of SUBDIRS) {
+    fs.mkdirSync(path.join(TARGET, dir), { recursive: true });
+  }
+}
+
+function installCreatorFile(file) {
+  const src  = path.join(SRC, file);
+  const dest = path.join(TARGET, file);
+
+  if (!fs.existsSync(src)) {
+    console.log(`  ! Skipping ${file} (not yet in source)`);
+    return;
+  }
+
+  if (fs.existsSync(dest)) {
+    console.log(`  ~ Skipped  ${file} (already exists — preserving your edits)`);
+  } else {
+    fs.copyFileSync(src, dest);
+    console.log(`  ✓ Installed ${file}`);
+  }
+}
+
+function installSystemFile(file) {
+  const src  = path.join(SRC, file);
+  const dest = path.join(TARGET, file);
+
+  if (!fs.existsSync(src)) {
+    console.log(`  ! Skipping ${file} (not yet in source)`);
+    return;
+  }
+
+  fs.copyFileSync(src, dest);
+  console.log(`  ✓ Installed ${file}`);
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+function main() {
+  console.log('Installing content-creation global layer...\n');
+
+  ensureDirs();
+
+  console.log('Creator files (skip if present):');
+  for (const file of CREATOR_FILES) {
+    installCreatorFile(file);
+  }
+
+  console.log('\nSystem files (always updated):');
+  for (const file of SYSTEM_FILES) {
+    installSystemFile(file);
+  }
+
+  console.log(`\ncontent-creation global layer installed at ${TARGET}`);
+}
+
+main();
