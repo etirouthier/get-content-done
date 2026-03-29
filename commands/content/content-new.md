@@ -6,6 +6,7 @@ allowed-tools:
   - Bash
   - Write
   - AskUserQuestion
+  - Task
 ---
 
 <objective>

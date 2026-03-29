@@ -160,37 +160,45 @@ node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT
 
 ---
 
-## Final confirmation
+## Step 6 — Run alignment
 
-Display a summary of what was captured:
+Subject capture is complete. Spawn the content-aligner to perform editorial alignment and scope generation.
+
+Spawn a Task with this instruction:
+
+"Run the content-aligner workflow.
+@~/.claude/content-creation/agents/content-aligner.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+The content-aligner handles the full alignment session through to scope approval. When the Task completes, the alignment step is written to state.json and the session is done.
+
+---
+
+## Step 7 — Session complete
+
+After the content-aligner Task completes, display a final confirmation:
 
 ```
-Session complete. Here's what was captured:
+Session complete. Project is ready for research.
 
-Subject: {subject}
-Intent: {intent}
-Knowledge: {length} characters captured
-References: {count} reference(s) stored
-Inspiration: {count} example(s) stored
+Subject:    {state.steps.subject_capture.inputs.subject}
+Angle:      {state.steps.alignment.inputs.angle_intent}
+Audience:   {state.steps.alignment.inputs.target_audience}
+Tone:       {state.steps.alignment.inputs.tone_intent}
 
 Project directory: {slug}/
 Pipeline state: .content/state.json
-Current step: subject_capture (complete)
-
-Next: Run /content:resume to continue to the alignment and research steps.
+Current step: research
 ```
 
-After displaying the final confirmation summary, run the following to confirm the full project directory structure is in place:
-
+Read the final state to populate this summary:
 ```bash
-# Verify directory structure exists
-echo "Verifying project structure..."
-ls -la "$PROJECT_ROOT/.content/state.json" && echo "  ✓ .content/state.json"
-ls -la "$PROJECT_ROOT/.content/references/" && echo "  ✓ .content/references/"
-ls -la "$PROJECT_ROOT/.content/inspiration/" && echo "  ✓ .content/inspiration/"
-ls -la "$PROJECT_ROOT/$OUTPUT_DIR/" && echo "  ✓ $OUTPUT_DIR/ (output directory)"
-echo "Project structure verified."
+FINAL_STATE=$(node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT" state-read)
+if [[ "$FINAL_STATE" == @file:* ]]; then FINAL_STATE=$(cat "${FINAL_STATE#@file:}"); fi
 ```
+
+Parse FINAL_STATE to extract subject, angle_intent, target_audience, tone_intent, and slug for display.
 
 ---
 
