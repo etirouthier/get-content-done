@@ -60,6 +60,15 @@ node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT
 
 (Note: the `--value` argument must be JSON-encoded — wrap the string variable in escaped quotes: `'"$SUBJECT"'`)
 
+Record output_dir so later phases can find the output directory without configuration:
+
+```bash
+# Record output_dir as a top-level input in subject_capture so later phases can find it
+node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT" \
+  state-checkpoint --step subject_capture --sub-step subject_captured \
+  --field output_dir --value '"'"$OUTPUT_DIR"'"'
+```
+
 ---
 
 ## Step 2 — Capture intent / angle intent
@@ -169,6 +178,18 @@ Pipeline state: .content/state.json
 Current step: subject_capture (complete)
 
 Next: Run /content:resume to continue to the alignment and research steps.
+```
+
+After displaying the final confirmation summary, run the following to confirm the full project directory structure is in place:
+
+```bash
+# Verify directory structure exists
+echo "Verifying project structure..."
+ls -la "$PROJECT_ROOT/.content/state.json" && echo "  ✓ .content/state.json"
+ls -la "$PROJECT_ROOT/.content/references/" && echo "  ✓ .content/references/"
+ls -la "$PROJECT_ROOT/.content/inspiration/" && echo "  ✓ .content/inspiration/"
+ls -la "$PROJECT_ROOT/$OUTPUT_DIR/" && echo "  ✓ $OUTPUT_DIR/ (output directory)"
+echo "Project structure verified."
 ```
 
 ---
