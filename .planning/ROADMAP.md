@@ -65,12 +65,11 @@ Plans:
   1. Creator can enter a subject as prose, fragments, or bullets and the system accepts it without requiring structured input
   2. System surfaces any mismatches between the subject and the creator's editorial guidance (niche, audience, tone) and requires creator confirmation before proceeding — off-niche subjects are soft-gated, not hard-blocked
   3. System outputs a structured subject scope (angle intent, target audience, tone intent) for creator approval, and no research begins until the creator explicitly confirms
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Build subject capture step with freeform input handling
-- [ ] 03-02: Implement editorial alignment check against GBL-01 guidance with mismatch surfacing
-- [ ] 03-03: Build structured scope output and creator approval checkpoint
+- [ ] 03-01-PLAN.md — Build content-aligner agent with four-dimension alignment, mismatch handling, and scope approval loop; add --complete flag to state-checkpoint; wire agents/ into installer
+- [ ] 03-02-PLAN.md — Wire content-aligner into content-new.md (Steps 6-7) and content-resume.md (Case B routing)
 
 ### Phase 4: Research
 **Goal**: Creator's existing knowledge informs research scope, and research agents map the subject landscape distinguishing known ground from contested from underexplored
@@ -178,7 +177,7 @@ Phases execute in strict numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 �
 |-------|----------------|--------|-----------|
 | 1. Global Layer Foundation | 3/3 | Complete   | 2026-03-26 |
 | 2. Project Infrastructure | 2/4 | In Progress|  |
-| 3. Subject Capture and Alignment | 0/3 | Not started | - |
+| 3. Subject Capture and Alignment | 1/2 | In Progress|  |
 | 4. Research | 0/4 | Not started | - |
 | 5. Ideation Loop | 0/4 | Not started | - |
 | 6. Draft Generation | 0/3 | Not started | - |

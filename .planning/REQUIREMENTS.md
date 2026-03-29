@@ -16,9 +16,9 @@
 
 ### Subject Capture & Alignment (SUBJ)
 
-- [ ] **SUBJ-01**: Creator can input a subject in freeform (prose, fragments, or bullets) to initialize a content project
-- [ ] **SUBJ-02**: System aligns the subject against editorial guidance (GBL-01) before work begins, surfaces mismatches, and requires creator confirmation to proceed
-- [ ] **SUBJ-03**: System outputs a structured subject scope (angle intent, target audience, tone intent) for creator approval before the research phase begins
+- [x] **SUBJ-01**: Creator can input a subject in freeform (prose, fragments, or bullets) to initialize a content project
+- [x] **SUBJ-02**: System aligns the subject against editorial guidance (GBL-01) before work begins, surfaces mismatches, and requires creator confirmation to proceed
+- [x] **SUBJ-03**: System outputs a structured subject scope (angle intent, target audience, tone intent) for creator approval before the research phase begins
 
 ### Research (RES)
 
@@ -101,9 +101,9 @@ These are explicitly excluded. Reasoning included to prevent re-adding.
 | INFRA-02 | Phase 2 — Project Infrastructure | Complete |
 | INFRA-03 | Phase 2 — Project Infrastructure | Complete |
 | INFRA-04 | Phase 2 — Project Infrastructure | Complete |
-| SUBJ-01 | Phase 3 — Subject Capture and Alignment | Pending |
-| SUBJ-02 | Phase 3 — Subject Capture and Alignment | Pending |
-| SUBJ-03 | Phase 3 — Subject Capture and Alignment | Pending |
+| SUBJ-01 | Phase 3 — Subject Capture and Alignment | Complete |
+| SUBJ-02 | Phase 3 — Subject Capture and Alignment | Complete |
+| SUBJ-03 | Phase 3 — Subject Capture and Alignment | Complete |
 | RES-01 | Phase 4 — Research | Pending |
 | RES-02 | Phase 4 — Research | Pending |
 | RES-03 | Phase 4 — Research | Pending |

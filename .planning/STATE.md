@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-project-infrastructure-03-PLAN.md
-last_updated: "2026-03-29T09:45:47.896Z"
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-29T16:21:01.007Z"
 last_activity: 2026-03-12 — Roadmap created (9 phases, 28 requirements mapped)
 progress:
   total_phases: 9
   completed_phases: 2
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
   percent: 0
 ---
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-project-infrastructure P02 | 2 | 2 tasks | 2 files |
 | Phase 02-project-infrastructure P04 | 1 | 2 tasks | 2 files |
 | Phase 02-project-infrastructure P03 | 2 | 2 tasks | 2 files |
+| Phase 03-subject-capture-and-alignment P01 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 02-project-infrastructure]: Resume workflow expands reference and inspiration file content using Read tool — creator sees actual content, not file paths
 - [Phase 02-project-infrastructure]: Sub-step checkpoint determines which subject_capture questions to re-ask — only unanswered fields are re-prompted on resume
 - [Phase 02-project-infrastructure]: content-resume.md handles two distinct error states: missing state (no active project) and corrupted state (parse failure), each with tailored recovery guidance
+- [Phase 03-subject-capture-and-alignment]: state-checkpoint --complete is purely additive: sets completed + advances pipeline + resets sub_step to null; absent = existing behavior unchanged
+- [Phase 03-subject-capture-and-alignment]: Agent install pattern mirrors workflow pattern (always-overwrite) — agents are code, not creator content
+- [Phase 03-subject-capture-and-alignment]: Alignment skip on blank guidance: under 50 non-structural words triggers skip with user notice, jumps to scope generation
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:31:50.530Z
-Stopped at: Completed 02-project-infrastructure-03-PLAN.md
+Last session: 2026-03-29T16:21:01.005Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
