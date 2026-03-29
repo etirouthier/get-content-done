@@ -37,6 +37,11 @@ const SYSTEM_FILES = [
 // Subdirectories to create inside TARGET (in addition to the root).
 const SUBDIRS = ['bin', 'workflows', 'templates'];
 
+// Bin tools: always overwrite on re-run (code, not creator content).
+const BIN_FILES = [
+  'bin/content-tools.cjs',
+];
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -63,6 +68,17 @@ function installCreatorFile(file) {
     fs.copyFileSync(src, dest);
     console.log(`  ✓ Installed ${file}`);
   }
+}
+
+function installBinFile(file) {
+  const src  = path.join(SRC, file);
+  const dest = path.join(TARGET, file);
+  if (!fs.existsSync(src)) {
+    console.log(`  ! Skipping ${file} (not yet in source)`);
+    return;
+  }
+  fs.copyFileSync(src, dest);
+  console.log(`  ✓ ${file} → ${dest} (bin)`);
 }
 
 function installSystemFile(file) {
@@ -95,6 +111,11 @@ function main() {
   console.log('\nSystem files (always updated):');
   for (const file of SYSTEM_FILES) {
     installSystemFile(file);
+  }
+
+  console.log('\nInstalling bin tools...');
+  for (const file of BIN_FILES) {
+    installBinFile(file);
   }
 
   console.log(`\ncontent-creation global layer installed at ${TARGET}`);
