@@ -250,22 +250,31 @@ function cmdStateRead() {
 
 /**
  * state-checkpoint — Update current step + optional field in state.json.
- * Flags: --step, --sub-step, --field, --value
+ * Flags: --step, --sub-step, --field, --value, --complete
+ *
+ * When --complete is present:
+ *   - Sets state.steps[step].completed = true
+ *   - Advances state.current.step to next step in pipeline order
+ *   - Resets state.current.sub_step to null
  */
 function cmdStateCheckpoint() {
-  const flags = parseFlags(args.slice(1));
-  const step    = flags['step'];
-  const subStep = flags['sub-step'];
-  const field   = flags['field'];
-  const value   = flags['value'];
+  const flags    = parseFlags(args.slice(1));
+  const step     = flags['step'];
+  const subStep  = flags['sub-step'];
+  const field    = flags['field'];
+  const value    = flags['value'];
+  const complete = flags['complete'] === true || flags['complete'] === 'true';
 
-  if (!step || !subStep) fail('state-checkpoint requires --step and --sub-step');
+  if (!step) fail('state-checkpoint requires --step');
+  if (!complete && !subStep) fail('state-checkpoint requires --sub-step (or --complete to skip sub-step)');
+
+  const PIPELINE_ORDER = [
+    'subject_capture', 'alignment', 'knowledge', 'research',
+    'ideation', 'draft', 'curation', 'linkedin',
+  ];
 
   const state = readState();
   if (!state) fail('no active project');
-
-  // Update current pointer
-  state.current = { step, sub_step: subStep };
 
   // Ensure step exists in state
   if (!state.steps[step]) {
@@ -279,6 +288,22 @@ function cmdStateCheckpoint() {
     } catch (_) {
       state.steps[step].inputs[field] = value;
     }
+  }
+
+  // Handle --complete flag
+  if (complete) {
+    state.steps[step].completed = true;
+
+    // Advance pipeline step to next step
+    const idx     = PIPELINE_ORDER.indexOf(step);
+    const nextStep = idx !== -1 && idx + 1 < PIPELINE_ORDER.length
+      ? PIPELINE_ORDER[idx + 1]
+      : step;
+
+    state.current = { step: nextStep, sub_step: null };
+  } else {
+    // Update current pointer normally
+    state.current = { step, sub_step: subStep };
   }
 
   // Update timestamp

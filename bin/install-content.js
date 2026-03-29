@@ -35,7 +35,7 @@ const SYSTEM_FILES = [
 ];
 
 // Subdirectories to create inside TARGET (in addition to the root).
-const SUBDIRS = ['bin', 'workflows', 'templates'];
+const SUBDIRS = ['bin', 'workflows', 'templates', 'agents'];
 
 // Bin tools: always overwrite on re-run (code, not creator content).
 const BIN_FILES = [
@@ -46,6 +46,11 @@ const BIN_FILES = [
 const WORKFLOW_FILES = [
   'workflows/content-new.md',
   'workflows/content-resume.md',
+];
+
+// Agent files: always overwrite on re-run (code, not creator content).
+const AGENT_FILES = [
+  'agents/content-aligner.md',
 ];
 
 // ---------------------------------------------------------------------------
@@ -98,6 +103,17 @@ function installWorkflowFile(file) {
   console.log(`  ✓ ${file} → ${dest} (workflow)`);
 }
 
+function installAgentFile(file) {
+  const src  = path.join(SRC, file);
+  const dest = path.join(TARGET, file);
+  if (!fs.existsSync(src)) {
+    console.log(`  ! Skipping ${file} (not yet in source)`);
+    return;
+  }
+  fs.copyFileSync(src, dest);
+  console.log(`  ✓ ${file} → ${dest} (agent)`);
+}
+
 function installSystemFile(file) {
   const src  = path.join(SRC, file);
   const dest = path.join(TARGET, file);
@@ -138,6 +154,11 @@ function main() {
   console.log('\nInstalling workflows...');
   for (const file of WORKFLOW_FILES) {
     installWorkflowFile(file);
+  }
+
+  console.log('\nInstalling agents...');
+  for (const file of AGENT_FILES) {
+    installAgentFile(file);
   }
 
   console.log(`\ncontent-creation global layer installed at ${TARGET}`);

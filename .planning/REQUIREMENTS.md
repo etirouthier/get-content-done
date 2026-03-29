@@ -58,7 +58,7 @@
 - [x] **INFRA-01**: One slash command (`/content:new`) initializes an isolated content project directory with structured pipeline state tracking
 - [x] **INFRA-02**: Pipeline state persists between sessions — creator can exit and resume at any pipeline step without losing work
 - [x] **INFRA-03**: References (URLs and pasted text) are stored per-project in the project directory; scoped to that project only
-- [x] **INFRA-04**: Final output files are written to the project's `/outputs/` directory: `article.md` (Substack-ready) and `linkedin-1.md` (LinkedIn post)
+- [x] **INFRA-04**: Final output files are written to the project's `{slug}/` directory (e.g., `why-remote-work-fails/article.md` and `why-remote-work-fails/linkedin-1.md`)
 
 ---
 

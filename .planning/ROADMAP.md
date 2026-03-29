@@ -48,7 +48,7 @@ Plans:
   1. Running `/content:new` creates an isolated `.content/` project directory with structured pipeline state tracking
   2. Creator can exit and resume at any pipeline step without losing work — pipeline state survives session boundaries
   3. References (URLs and pasted text) are stored in the project directory, scoped to that project only, and not accessible from other projects
-  4. Final output files are written to the project's `/outputs/` directory: `article.md` (Substack-ready) and `linkedin-1.md` (LinkedIn post)
+  4. Final output files are written to the project's `{slug}/` directory (e.g., `why-remote-work-fails/article.md` and `why-remote-work-fails/linkedin-1.md`)
 **Plans**: 4 plans
 
 Plans:
@@ -151,7 +151,7 @@ Plans:
 Plans:
 - [ ] 08-01: Build `content-linkedin` agent framed as "transmission not summary" with provocation-first extraction
 - [ ] 08-02: Implement LinkedIn post generation with hook-type targeting and formatting constraints
-- [ ] 08-03: Build `/content:linkedin` command + workflow with output to `/outputs/linkedin-1.md`
+- [ ] 08-03: Build `/content:linkedin` command + workflow with output to `{slug}/linkedin-1.md`
 
 ### Phase 9: Integrated Pipeline
 **Goal**: Creator can run a single `/content:new` command and progress through the complete 8-step pipeline with creator gates at subject alignment, angle selection, and curation approval
@@ -161,7 +161,7 @@ Plans:
   1. Running `/content:new "subject"` initializes a content project and drives the creator through all 8 pipeline steps in order — no manual command chaining required
   2. Creator gates at steps 3 (reference gathering), 5 (angle selection), and 7 (curation approval) stop the pipeline and return structured output; a continuation agent resumes after the creator responds
   3. Full pipeline mode and lightweight mode (skip research, go direct to draft) are selectable at the entry point before any agents are spawned
-  4. Final output files (`article.md` and `linkedin-1.md`) are written to `/outputs/` only after explicit creator approval at the curation gate
+  4. Final output files (`article.md` and `linkedin-1.md`) are written to `{slug}/` only after explicit creator approval at the curation gate
 **Plans**: TBD
 
 Plans:
