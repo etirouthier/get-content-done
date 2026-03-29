@@ -42,6 +42,12 @@ const BIN_FILES = [
   'bin/content-tools.cjs',
 ];
 
+// Workflow files: always overwrite on re-run (code, not creator content).
+const WORKFLOW_FILES = [
+  'workflows/content-new.md',
+  'workflows/content-resume.md',
+];
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -81,6 +87,17 @@ function installBinFile(file) {
   console.log(`  ✓ ${file} → ${dest} (bin)`);
 }
 
+function installWorkflowFile(file) {
+  const src  = path.join(SRC, file);
+  const dest = path.join(TARGET, file);
+  if (!fs.existsSync(src)) {
+    console.log(`  ! Skipping ${file} (not yet in source)`);
+    return;
+  }
+  fs.copyFileSync(src, dest);
+  console.log(`  ✓ ${file} → ${dest} (workflow)`);
+}
+
 function installSystemFile(file) {
   const src  = path.join(SRC, file);
   const dest = path.join(TARGET, file);
@@ -116,6 +133,11 @@ function main() {
   console.log('\nInstalling bin tools...');
   for (const file of BIN_FILES) {
     installBinFile(file);
+  }
+
+  console.log('\nInstalling workflows...');
+  for (const file of WORKFLOW_FILES) {
+    installWorkflowFile(file);
   }
 
   console.log(`\ncontent-creation global layer installed at ${TARGET}`);
