@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-project-infrastructure-04-PLAN.md
-last_updated: "2026-03-29T09:31:38.132Z"
+stopped_at: Completed 02-project-infrastructure-03-PLAN.md
+last_updated: "2026-03-29T09:31:50.532Z"
 last_activity: 2026-03-12 — Roadmap created (9 phases, 28 requirements mapped)
 progress:
   total_phases: 9
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-project-infrastructure P01 | 2 | 2 tasks | 2 files |
 | Phase 02-project-infrastructure P02 | 2 | 2 tasks | 2 files |
 | Phase 02-project-infrastructure P04 | 1 | 2 tasks | 2 files |
+| Phase 02-project-infrastructure P03 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,9 @@ Recent decisions affecting current work:
 - [Phase 02-project-infrastructure]: Checkpoint writes are immediate after each sub-step answer, not batched — enforces state.json freshness at every capture step
 - [Phase 02-project-infrastructure]: Workflow files (content-new.md, content-resume.md) treated as code — always overwritten on install re-run, like BIN_FILES
 - [Phase 02-project-infrastructure]: output_dir stored via state-checkpoint in subject_capture step — downstream phases read from steps.subject_capture.inputs.output_dir
+- [Phase 02-project-infrastructure]: Resume workflow expands reference and inspiration file content using Read tool — creator sees actual content, not file paths
+- [Phase 02-project-infrastructure]: Sub-step checkpoint determines which subject_capture questions to re-ask — only unanswered fields are re-prompted on resume
+- [Phase 02-project-infrastructure]: content-resume.md handles two distinct error states: missing state (no active project) and corrupted state (parse failure), each with tailored recovery guidance
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:31:21.893Z
-Stopped at: Completed 02-project-infrastructure-04-PLAN.md
+Last session: 2026-03-29T09:31:50.530Z
+Stopped at: Completed 02-project-infrastructure-03-PLAN.md
 Resume file: None
