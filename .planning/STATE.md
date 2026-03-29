@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-project-infrastructure-01-PLAN.md
-last_updated: "2026-03-29T09:24:04.436Z"
+stopped_at: Completed 02-project-infrastructure-02-PLAN.md
+last_updated: "2026-03-29T09:28:15.576Z"
 last_activity: 2026-03-12 — Roadmap created (9 phases, 28 requirements mapped)
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 7
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-global-layer-foundation P02 | 1 | 1 tasks | 1 files |
 | Phase 01-global-layer-foundation P03 | 2 | 1 tasks | 1 files |
 | Phase 02-project-infrastructure P01 | 2 | 2 tasks | 2 files |
+| Phase 02-project-infrastructure P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,9 @@ Recent decisions affecting current work:
 - [Phase 02-project-infrastructure]: add-reference writes file + updates state.json atomically in single subcommand call — no partial write risk
 - [Phase 02-project-infrastructure]: project-init auto-archives existing project before creating new one — single active project invariant enforced by the tool
 - [Phase 02-project-infrastructure]: BIN_FILES in install-content.js always overwrites on re-run (bin tools are code, not creator content)
+- [Phase 02-project-infrastructure]: Workflow file uses prose-and-bash format (no YAML frontmatter) — it is a workflow document loaded by execution_context, not a command registration
+- [Phase 02-project-infrastructure]: guidance.md included in command file execution_context so creator editorial context is available to the agent during first session
+- [Phase 02-project-infrastructure]: Checkpoint writes are immediate after each sub-step answer, not batched — enforces state.json freshness at every capture step
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:24:04.434Z
-Stopped at: Completed 02-project-infrastructure-01-PLAN.md
+Last session: 2026-03-29T09:28:15.573Z
+Stopped at: Completed 02-project-infrastructure-02-PLAN.md
 Resume file: None

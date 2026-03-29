@@ -177,7 +177,7 @@ Phases execute in strict numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 �
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Global Layer Foundation | 3/3 | Complete   | 2026-03-26 |
-| 2. Project Infrastructure | 1/4 | In Progress|  |
+| 2. Project Infrastructure | 2/4 | In Progress|  |
 | 3. Subject Capture and Alignment | 0/3 | Not started | - |
 | 4. Research | 0/4 | Not started | - |
 | 5. Ideation Loop | 0/4 | Not started | - |
