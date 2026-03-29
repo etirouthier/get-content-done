@@ -106,12 +106,22 @@ Read `state.steps.subject_capture.inputs` to identify which fields are already p
 
 Pass `--cwd "$PROJECT_ROOT"` to all content-tools.cjs calls when running remaining steps.
 
-**Case B — subject_capture is complete, next step is alignment:**
+**Case B — subject_capture is complete, alignment step is current or not yet completed:**
 
-```
-Subject capture is complete. The next step is alignment — checking your subject against editorial guidance.
-The alignment step will be available in Phase 3.
-```
+Condition: `state.steps.subject_capture.completed === true` AND `state.steps.alignment.completed !== true`
+
+This covers both "alignment never started" (fresh resume after capture) and "alignment started but interrupted before scope approval" (partial alignment state).
+
+Subject capture is complete. Spawning content-aligner to continue the alignment and scope generation session.
+
+Spawn a Task with this instruction:
+
+"Run the content-aligner workflow.
+@~/.claude/content-creation/agents/content-aligner.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+The content-aligner will pick up from the current alignment sub-step. When the Task completes, the alignment step is written to state.json and the session is done.
 
 **Case C — any other step is current:**
 
