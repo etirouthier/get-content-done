@@ -175,30 +175,81 @@ The content-aligner handles the full alignment session through to scope approval
 
 ---
 
-## Step 7 — Session complete
+## Step 7 — Display scope summary
 
-After the content-aligner Task completes, display a final confirmation:
+After the content-aligner Task completes, display a mid-session summary:
 
 ```
-Session complete. Project is ready for research.
+--- Alignment Complete ---
 
 Subject:    {state.steps.subject_capture.inputs.subject}
 Angle:      {state.steps.alignment.inputs.angle_intent}
 Audience:   {state.steps.alignment.inputs.target_audience}
 Tone:       {state.steps.alignment.inputs.tone_intent}
 
-Project directory: {slug}/
-Pipeline state: .content/state.json
-Current step: research
+Proceeding to knowledge capture...
 ```
 
-Read the final state to populate this summary:
+Read the state to populate this summary:
+```bash
+MIDSTATE=$(node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT" state-read)
+if [[ "$MIDSTATE" == @file:* ]]; then MIDSTATE=$(cat "${MIDSTATE#@file:}"); fi
+```
+
+Parse MIDSTATE to extract subject, angle_intent, target_audience, tone_intent for display.
+
+---
+
+## Step 8 — Knowledge capture
+
+Spawn a Task with this instruction:
+
+"Run the content-knowledge-capture workflow.
+@~/.claude/content-creation/agents/content-knowledge-capture.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+The content-knowledge-capture agent handles the skip gate, guided questions, and optional reference ingestion. When the Task completes, the knowledge step is marked complete in state.json.
+
+---
+
+## Step 9 — Research
+
+After the knowledge capture Task completes, spawn the researcher automatically — no confirmation gate.
+
+Spawn a Task with this instruction:
+
+"Run the content-researcher workflow.
+@~/.claude/content-creation/agents/content-researcher.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+The content-researcher agent produces knowledge-map.md and displays it inline. When the Task completes, the research step is marked complete in state.json.
+
+---
+
+## Step 10 — Session complete
+
+After the content-researcher Task completes, display a final summary:
+
+```
+Session complete. Research phase done.
+
+Subject:         {subject}
+Angle:           {angle_intent}
+Knowledge map:   {output_dir}/knowledge-map.md
+Current step:    ideation
+
+Run /content:resume to continue to ideation.
+```
+
+Read the final state to populate:
 ```bash
 FINAL_STATE=$(node "$HOME/.claude/content-creation/bin/content-tools.cjs" --cwd "$PROJECT_ROOT" state-read)
 if [[ "$FINAL_STATE" == @file:* ]]; then FINAL_STATE=$(cat "${FINAL_STATE#@file:}"); fi
 ```
 
-Parse FINAL_STATE to extract subject, angle_intent, target_audience, tone_intent, and slug for display.
+Parse FINAL_STATE to extract subject, angle_intent, output_dir, and current step for display.
 
 ---
 

@@ -80,13 +80,12 @@ Plans:
   2. Creator can provide URLs (fetched and extracted) or pasted text as project references, stored per-project, available to research and ideation agents
   3. Research agent produces a structured knowledge map scoped to the confirmed subject with three explicit sections: (a) consensus ground to skip, (b) current practitioner debate, (c) specific contradictions and anomalies — not a generic survey
   4. Research outputs are fully isolated to the current project and do not bleed into any other content project
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [x] 04-01: Build creator knowledge capture step with structured "what do you already know?" prompt
-- [ ] 04-02: Implement URL fetch + pasted-text reference ingestion into per-project storage
-- [ ] 04-03: Build `content-researcher` agent with knowledge-map output structure (consensus / debate / anomalies)
-- [ ] 04-04: Verify research scope isolation (per-project output, no cross-project access)
+- [x] 04-01-PLAN.md — Author content-knowledge-capture agent with skip gate, 4 guided questions, optional reference ingestion, and step completion
+- [x] 04-02-PLAN.md — Author content-researcher agent with three-section knowledge map output annotated against creator priors
+- [x] 04-03-PLAN.md — Wire both agents into content-new.md (Steps 8-10), content-resume.md (Cases C-D), installer, and command allowed-tools
 
 ### Phase 5: Ideation Loop
 **Goal**: Creator seeds angles first, then agents expand using mental models and research, producing non-obvious angle options the creator can refine
@@ -178,7 +177,7 @@ Phases execute in strict numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 �
 | 1. Global Layer Foundation | 3/3 | Complete   | 2026-03-26 |
 | 2. Project Infrastructure | 2/4 | In Progress|  |
 | 3. Subject Capture and Alignment | 1/2 | In Progress|  |
-| 4. Research | 1/1 | Complete   | 2026-03-30 |
+| 4. Research | 3/3 | Complete   | 2026-03-30 |
 | 5. Ideation Loop | 0/4 | Not started | - |
 | 6. Draft Generation | 0/3 | Not started | - |
 | 7. Curation Loop | 0/4 | Not started | - |
