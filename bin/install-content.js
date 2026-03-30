@@ -51,6 +51,7 @@ const WORKFLOW_FILES = [
 // Agent files: always overwrite on re-run (code, not creator content).
 const AGENT_FILES = [
   'agents/content-aligner.md',
+  'agents/content-researcher.md',
 ];
 
 // ---------------------------------------------------------------------------
