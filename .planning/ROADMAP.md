@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Global Layer Foundation** - Editorial guidance, mental models, and virality patterns installed at `~/.claude/content-creation/` (completed 2026-03-26)
 - [ ] **Phase 2: Project Infrastructure** - Per-content project initialization, pipeline state tracking, and output directory structure
 - [ ] **Phase 3: Subject Capture and Alignment** - Creator inputs a subject, system aligns against editorial guidance, outputs confirmed scope
-- [ ] **Phase 4: Research** - Creator knowledge capture, reference ingestion, and research agent maps the subject landscape
+- [x] **Phase 4: Research** - Creator knowledge capture, reference ingestion, and research agent maps the subject landscape (completed 2026-03-30)
 - [ ] **Phase 5: Ideation Loop** - Two-pass ideation with mental model application and creator-seeded angle generation
 - [ ] **Phase 6: Draft Generation** - Full Substack article produced from approved angle with voice preservation as primary constraint
 - [ ] **Phase 7: Curation Loop** - Iterative curation with hook analysis, structural critique, and creator-controlled exit
@@ -83,7 +83,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 04-01: Build creator knowledge capture step with structured "what do you already know?" prompt
+- [x] 04-01: Build creator knowledge capture step with structured "what do you already know?" prompt
 - [ ] 04-02: Implement URL fetch + pasted-text reference ingestion into per-project storage
 - [ ] 04-03: Build `content-researcher` agent with knowledge-map output structure (consensus / debate / anomalies)
 - [ ] 04-04: Verify research scope isolation (per-project output, no cross-project access)
@@ -178,7 +178,7 @@ Phases execute in strict numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 �
 | 1. Global Layer Foundation | 3/3 | Complete   | 2026-03-26 |
 | 2. Project Infrastructure | 2/4 | In Progress|  |
 | 3. Subject Capture and Alignment | 1/2 | In Progress|  |
-| 4. Research | 0/4 | Not started | - |
+| 4. Research | 1/1 | Complete   | 2026-03-30 |
 | 5. Ideation Loop | 0/4 | Not started | - |
 | 6. Draft Generation | 0/3 | Not started | - |
 | 7. Curation Loop | 0/4 | Not started | - |
