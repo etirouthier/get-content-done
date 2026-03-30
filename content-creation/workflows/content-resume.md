@@ -123,7 +123,43 @@ PROJECT_ROOT: {PROJECT_ROOT}"
 
 The content-aligner will pick up from the current alignment sub-step. When the Task completes, the alignment step is written to state.json and the session is done.
 
-**Case C — any other step is current:**
+**Case C — alignment complete, knowledge not yet complete:**
+
+Condition: `state.steps.alignment.completed === true AND state.steps.knowledge.completed !== true`
+
+Check existing knowledge inputs to determine resume point:
+- If `state.steps.knowledge.inputs.beliefs` exists → knowledge capture was partially done; the agent will read existing answers and skip already-captured fields
+- If no knowledge inputs exist → knowledge capture starts fresh (skip gate will be offered)
+
+Spawn a Task with this instruction:
+
+"Run the content-knowledge-capture workflow.
+@~/.claude/content-creation/agents/content-knowledge-capture.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+After the Task completes, check `state.steps.research.completed`. If false → spawn content-researcher automatically (see Case D).
+
+**Case D — knowledge complete, research not yet complete:**
+
+Condition: `state.steps.alignment.completed === true AND state.steps.knowledge.completed === true AND state.steps.research.completed !== true`
+
+Spawn a Task with this instruction:
+
+"Run the content-researcher workflow.
+@~/.claude/content-creation/agents/content-researcher.md
+
+PROJECT_ROOT: {PROJECT_ROOT}"
+
+After the Task completes, display:
+```
+Research complete. Knowledge map written to {output_dir}/knowledge-map.md
+Current step: ideation
+
+Run /content:resume to continue to ideation.
+```
+
+**Case E — any step beyond research is current:**
 
 ```
 Current step: {state.current.step}
