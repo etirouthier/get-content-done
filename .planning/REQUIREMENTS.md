@@ -24,8 +24,8 @@
 
 - [ ] **RES-01**: Creator can capture their existing knowledge and beliefs about the subject via a structured prompt before research agents run
 - [ ] **RES-02**: Creator can provide references as project inputs — URLs (fetched and extracted) or pasted text — stored per-project, used to inform research and ideation
-- [ ] **RES-03**: Research agent maps the subject landscape — existing arguments, publicly known data, counterpoints, angle gaps — and produces a structured knowledge map scoped to the confirmed subject
-- [ ] **RES-04**: Research is scoped to the current project; research outputs from one project do not bleed into another
+- [x] **RES-03**: Research agent maps the subject landscape — existing arguments, publicly known data, counterpoints, angle gaps — and produces a structured knowledge map scoped to the confirmed subject
+- [x] **RES-04**: Research is scoped to the current project; research outputs from one project do not bleed into another
 
 ### Ideation (IDEA)
 
@@ -106,8 +106,8 @@ These are explicitly excluded. Reasoning included to prevent re-adding.
 | SUBJ-03 | Phase 3 — Subject Capture and Alignment | Complete |
 | RES-01 | Phase 4 — Research | Pending |
 | RES-02 | Phase 4 — Research | Pending |
-| RES-03 | Phase 4 — Research | Pending |
-| RES-04 | Phase 4 — Research | Pending |
+| RES-03 | Phase 4 — Research | Complete |
+| RES-04 | Phase 4 — Research | Complete |
 | IDEA-01 | Phase 5 — Ideation Loop | Pending |
 | IDEA-02 | Phase 5 — Ideation Loop | Pending |
 | IDEA-03 | Phase 5 — Ideation Loop | Pending |
